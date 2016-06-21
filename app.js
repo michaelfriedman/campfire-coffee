@@ -124,7 +124,7 @@ function manifestTitle(textContent) {
   coffeeTable.appendChild(title);
   }
 //create table element
-function manifestTable(tableId) {
+function manifestTableFrame(tableId) {
   var coffeeTableDiv = document.getElementById('tableExtrapolatons');
   var table = document.createELement('table');
   table.id = tableId;
@@ -162,8 +162,8 @@ function manifestCoffeeProjections(tableId, object) {
   object.totalHourlyPoundsNeeded.shift();
 }
 //bottom row with totals
-function manifestTotals() {
-  var table = document.getElementById('coffeeTable');
+function manifestCoffeeTotals() {
+  var table = document.getElementById('coffee-table');
   var row = document.createElement('tr')
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
@@ -179,7 +179,7 @@ function manifestTotals() {
 }
 //labor data
 function manifestBaristaRow(tableId, object) {
-  var table = document.getElementById()tableId;
+  var table = document.getElementById(tableId);
   var row = document.createElement('tr');
   object.employeesPerHour.unshift(Math.ceil(object.dailyEmploy));
   object.employeesPerHour.unshift(object.name);
@@ -207,4 +207,13 @@ function manifestBaristaTotals() {
   }
   table.appendChild(row);
 }
-//generate the tables
+//generate the coffee-table
+function manifestTheTable() {
+  manifestTitle('Minimum Stock Requirements by Kiosk');
+  manifestTableFrame('coffee-table')
+  manifestHeader('coffee-table', 'Daily Totals:');
+  for (var index in allItems) {
+    manifestCoffeeProjections('coffee-table', allItems[index]);
+  }
+  manifestCoffeeTotals();
+}
