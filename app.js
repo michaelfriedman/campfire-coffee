@@ -110,3 +110,20 @@ capitolHill.getAllTheTotals();
 seattlePublicLibrary.getAllTheTotals();
 southLakeUnion.getAllTheTotals();
 seaTacAirport.getAllTheTotals();
+
+//generate tables
+  //make h1 title row
+  function manifestTitle(textContent) {
+    var coffeeTable = document.getElementById('table-data');
+    var title = document.createElement('h1');
+    title.textContent = textContent;
+    coffeeTable.appendChild(headTag);
+  }
+
+
+  //make table header
+function manifestHeader(tableId, object) {
+  var table = document.getElementById(tableId);
+  var row = document.createElement('tr');
+  object.totalHourlyPoundsNeeded.unshift(Math.round(object))
+}
