@@ -3,8 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
+    <div id="myform">
+   <h1><b>Campfire Coffee Kiosk Calculator</b></h1>
+   <fieldset>
+     <label for="userInput">New Kiosk Name:</label><br>
+     <input type="text" id="name"><br>
+
+     <label for="userInput">Min Customer Per Hour:</label><br>
+     <input type="number" min="5" max="50" id="minCustHr"><br>
+
+     <label for="userInput">Max Customer Per Hour:</label><br>
+     <input type="number" min="10" max="500" id="minCustHr"><br>
+
+     <label for="userInput">Cups Per Customer:</label><br>
+     <input type="number" min="1" max="5" id="minCustHr"><br>
+
+     <label for="userInput">To go Pounds Per Customer:</label><br>
+     <input type="number" min=".01" max="5" step=".01" id="minCustHr"><br>
+
     <div id="tableExtrapolatons">
 
     </div>

@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: 'Arial';
+  color: black;
+  background: tan
+}
+
+#navBar {
+  width: 100%;
+  background: black;
+  min-height: 30px;
+  padding: 10px;
+  position: absolute;;
+  text-align: center;
+}
+
+#navBar ul li {
+  display: row;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.navi {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: lightblue;
+}
+
+a:hover {
+  color: pink;
+}
+
+#minCustHr {
+  width: 123px;
+}
+
+.cellophane {
+  display: flex;
+  flex-direction: row;
+}
+
+.cellophane ul li img {
+  max-width: 300px;
+  max-height: 300px;
+  border: 1px solid black;
+  flex-direction: row;
+  justify-content: center;
+}
+
+header {
+  margin-top: 15px;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+table, table td {
+  border: 1px solid black;
+}
