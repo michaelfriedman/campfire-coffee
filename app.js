@@ -30,16 +30,19 @@ function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   allItems.push(this);
   stores.push(this.name);
 }
+
 //objects
 var pikePlaceMarket = new CoffeeShop('Pike Place Market', 14, 35, 1.2, 0.34);
 var capitolHill = new CoffeeShop('Capitol Hill', 12, 28, 3.2, 0.03);
 var seattlePublicLibrary = new CoffeeShop('Seattle Public Libray', 9, 45, 2.6, 0.02);
 var southLakeUnion = new CoffeeShop('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTacAirport = new CoffeeShop('Sea-Tac Airport', 28, 44, 1.1, 0.41);
+
 //functions and methods
 function getRandomInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 //methods
 CoffeeShop.prototype.getRandomCustomer = function() {
   for (var j = 0; j < businessHours.length; j++) {
@@ -96,7 +99,6 @@ CoffeeShop.prototype.getFranchiseTotalLbs = function() {
   }
 };
 
-
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
   this.getCupsSold();
@@ -131,6 +133,7 @@ function manifestTitle(textContent) {
   title.textContent = textContent;
   coffeeTableDiv.appendChild(title);
 }
+
 //create table element
 function manifestTableFrame(tableId) {
   var coffeeTableDiv = document.getElementById('tableExtrapolatons');
@@ -138,6 +141,7 @@ function manifestTableFrame(tableId) {
   table.id = tableId;
   coffeeTableDiv.appendChild(table);
 }
+
   //make table header
 function manifestHeader(tableId, textContent) {
   var table = document.getElementById(tableId);
@@ -154,6 +158,7 @@ function manifestHeader(tableId, textContent) {
   businessHours.shift();
   businessHours.shift();
 }
+
 //insert coffee shop data
 function manifestCoffeeProjections(tableId, object) {
   var table = document.getElementById(tableId);
@@ -169,6 +174,7 @@ function manifestCoffeeProjections(tableId, object) {
   object.totalHourlyPoundsNeeded.shift();
   object.totalHourlyPoundsNeeded.shift();
 }
+
 //bottom row with totals
 function manifestCoffeeTotals() {
   var table = document.getElementById('coffee-table');
@@ -176,7 +182,7 @@ function manifestCoffeeTotals() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  franchiseHourlyPounds.unshift(Math.round( totalPoundsNeeded * 10 ) / 10);
+  franchiseHourlyPounds.unshift(Math.round( CoffeeShop.totalPoundsNeeded * 10 ) / 10);
   for (var index in franchiseHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
@@ -185,11 +191,12 @@ function manifestCoffeeTotals() {
   table.appendChild(row);
   franchiseHourlyPounds.shift();
 }
+
 //labor data
 function manifestBaristaRow(tableId, object) {
   var table = document.getElementById(tableId);
   var row = document.createElement('tr');
-  object.employeesPerHour.unshift(Math.ceil(object.dailyEmploy));
+  object.employeesPerHour.unshift(Math.ceil(object.dailyBaristasNeeded));
   object.employeesPerHour.unshift(object.name);
   for (var index in object.employeesPerHour) {
     cell = document.createElement('td');
@@ -200,6 +207,7 @@ function manifestBaristaRow(tableId, object) {
   object.employeesPerHour.shift();
   object.employeesPerHour.shift();
 }
+
 //franchise barista totals
 function manifestBaristaTotals() {
   var table = document.getElementById(baristaTable);
@@ -217,6 +225,7 @@ function manifestBaristaTotals() {
   }
   table.appendChild(row);
 }
+
 //generate the coffee-table
 function manifestCoffeeTable() {
   manifestTitle('Minimum Stock Requirements by Kiosk');
@@ -227,13 +236,14 @@ function manifestCoffeeTable() {
   }
   manifestCoffeeTotals();
 }
+
 //generate staffing table
 function manifestStaffingTable() {
   manifestTitle('Daily Staffing Requirements by Kiosk');
   manifestTableFrame('staffing-table');
   manifestHeader('staffing-table', 'Totals');
   for (var index in allItems) {
-    manifestBaristaRow('staffing-table', allStores[index]);
+    manifestBaristaRow('staffing-table', allItems[index]);
   }
   manifestBaristaTotals();
 }
