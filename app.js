@@ -89,6 +89,14 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
     this.totalHourlyPoundsNeeded[t] = (parseFloat(this.beansForCups[t] + this.toGoBeansSold[t]));
   }
 };
+
+CoffeeShop.prototype.getFranchiseTotalLbs = function() {
+  for (index in object.totalPoundsNeeded) {
+    this.totalHourlyPoundsNeeded[t] = (parseFloat(this.beansForCups[t] + this.toGoBeansSold[t]));
+  }
+};
+
+
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
   this.getCupsSold();
@@ -122,7 +130,7 @@ function manifestTitle(textContent) {
   var title = document.createElement('h1');
   title.textContent = textContent;
   coffeeTableDiv.appendChild(title);
-  }
+}
 //create table element
 function manifestTableFrame(tableId) {
   var coffeeTableDiv = document.getElementById('tableExtrapolatons');
@@ -164,7 +172,7 @@ function manifestCoffeeProjections(tableId, object) {
 //bottom row with totals
 function manifestCoffeeTotals() {
   var table = document.getElementById('coffee-table');
-  var row = document.createElement('tr')
+  var row = document.createElement('tr');
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
@@ -186,11 +194,11 @@ function manifestBaristaRow(tableId, object) {
   for (var index in object.employeesPerHour) {
     cell = document.createElement('td');
     cell.textContent = object.employeesPerHour[index];
-  row.appendChild(cell);
-}
-table.appendChild(row);
-object.employeesPerHour.shift();
-object.employeesPerHour.shift();
+    row.appendChild(cell);
+  }
+  table.appendChild(row);
+  object.employeesPerHour.shift();
+  object.employeesPerHour.shift();
 }
 //franchise barista totals
 function manifestBaristaTotals() {
@@ -212,7 +220,7 @@ function manifestBaristaTotals() {
 //generate the coffee-table
 function manifestCoffeeTable() {
   manifestTitle('Minimum Stock Requirements by Kiosk');
-  manifestTableFrame('coffee-table')
+  manifestTableFrame('coffee-table');
   manifestHeader('coffee-table', 'Daily Totals:');
   for (var index in allItems) {
     manifestCoffeeProjections('coffee-table', allItems[index]);
@@ -222,7 +230,7 @@ function manifestCoffeeTable() {
 //generate staffing table
 function manifestStaffingTable() {
   manifestTitle('Daily Staffing Requirements by Kiosk');
-  manifestTableFrame(staffing-table);
+  manifestTableFrame('staffing-table');
   manifestHeader('staffing-table', 'Totals');
   for (var index in allItems) {
     manifestBaristaRow('staffing-table', allStores[index]);
