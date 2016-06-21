@@ -183,7 +183,9 @@ function manifestBaristaRow(tableId, object) {
   var row = document.createElement('tr');
   object.employeesPerHour.unshift(Math.ceil(object.dailyEmploy));
   object.employeesPerHour.unshift(object.name);
-  for (var index in object.employeesPerHour[index]);
+  for (var index in object.employeesPerHour) {
+    cell = document.createElement('td');
+    cell.textContent = object.employeesPerHour[index];
   row.appendChild(cell);
 }
 table.appendChild(row);
@@ -208,7 +210,7 @@ function manifestBaristaTotals() {
   table.appendChild(row);
 }
 //generate the coffee-table
-function manifestTheTable() {
+function manifestCoffeeTable() {
   manifestTitle('Minimum Stock Requirements by Kiosk');
   manifestTableFrame('coffee-table')
   manifestHeader('coffee-table', 'Daily Totals:');
@@ -217,3 +219,15 @@ function manifestTheTable() {
   }
   manifestCoffeeTotals();
 }
+//generate staffing table
+function manifestStaffingTable() {
+  manifestTitle('Daily Staffing Requirements by Kiosk');
+  manifestTableFrame(staffing-table);
+  manifestHeader('staffing-table', 'Totals');
+  for (var index in allItems) {
+    manifestBaristaRow('staffing-table', allStores[index]);
+  }
+  manifestBaristaTotals();
+}
+manifestCoffeeTable();
+manifestStaffingTable();
