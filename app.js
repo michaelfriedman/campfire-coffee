@@ -114,16 +114,31 @@ seaTacAirport.getAllTheTotals();
 //generate tables
   //make h1 title row
   function manifestTitle(textContent) {
-    var coffeeTable = document.getElementById('table-data');
+    var coffeeTableDiv = document.getElementById('tableExtrapolatons');
     var title = document.createElement('h1');
     title.textContent = textContent;
-    coffeeTable.appendChild(headTag);
+    coffeeTable.appendChild(title);
   }
-
-
+//create table element
+function manifestTable(tableId) {
+  var coffeeTableDiv = document.getElementById('tableExtrapolatons');
+  var table = document.createELement('table');
+  table.id = tableId;
+  coffeeTableDiv.appendChild(table);
+}
   //make table header
-function manifestHeader(tableId, object) {
+function manifestHeader(tableId, textContent) {
   var table = document.getElementById(tableId);
-  var row = document.createElement('tr');
-  object.totalHourlyPoundsNeeded.unshift(Math.round(object))
+  var billboard = document.createElement('tr');
+  billboard.id = 'billboard-header';
+  table.appendChild(billboard);
+  businessHours.unshift(textContent);
+  businessHours.unshift('');
+  for (index in businessHours) {
+    digits = document.createElement('td');
+    digits.textContent = businessHours[index];
+    billboard.appendChild(digits);
+  }
+  businessHours.shift();
+  businessHours.shift();
 }
