@@ -26,6 +26,12 @@ function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   allItems.push(this);
   stores.push(this.name);
 }
+//objects
+var pikePlaceMarket = new CoffeeShop('Pike Place Market', 14, 35, 1.2, 0.34);
+var capitolHill = new CoffeeShop('Capitol Hill', 12, 28, 3.2, 0.03);
+var seattlePublicLibrary = new CoffeeShop('Seattle Public Libray', 9, 45, 2.6, 0.02);
+var southLakeUnion = new CoffeeShop('South Lake Union', 5, 18, 1.3, 0.04);
+var seaTacAirport = new CoffeeShop('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 //functions and methods
 function getRandomInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -58,3 +64,49 @@ CoffeeShop.prototype.getEmployeesPerHour = function() {
     this.employeesPerHour.push(Math.ceil(this.cupsSold[o] / 30));
   }
 };
+//Methods for calculating totals
+CoffeeShop.prototype.getTotalBeansForCups = function () {
+  for (var q = 0; q < this.beansForCups.length; q++) {
+    this.totalBeansForCups += (this.beansForCups[q]);
+  }
+};
+CoffeeShop.prototype.getTotalToGoBeansSold = function () {
+  for (var r = 0; r < this.toGoBeansSold.length; r++) {
+    this.totalToGoBeansSold += (this.toGoBeansSold[r]);
+  }
+};
+CoffeeShop.prototype.getTotalPoundsNeeded = function () {
+  for (var s = 0; s < this.toGoBeansSold.length; s++) {
+    this.totalPoundsNeeded = (this.totalBeansForCups + this.totalToGoBeansSold);
+  }
+};
+CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
+  for (var t = 0; t < this.beansForCups.length; t++) {
+    this.totalHourlyPoundsNeeded[t] = (parseFloat(this.beansForCups[t] + this.toGoBeansSold[t]));
+  }
+};
+CoffeeShop.prototype.doAllTheMethods = function() {
+  this.getRandomCustomer();
+  this.getCupsSold();
+  this.getToGoBeansSold();
+  this.getBeansForCups();
+  this.getEmployeesPerHour();
+};
+
+pikePlaceMarket.doAllTheMethods();
+capitolHill.doAllTheMethods();
+seattlePublicLibrary.doAllTheMethods();
+southLakeUnion.doAllTheMethods();
+seaTacAirport.doAllTheMethods();
+
+CoffeeShop.prototype.getAllTheTotals = function() {
+  this.getTotalBeansForCups();
+  this.getTotalToGoBeansSold();
+  this.getTotalPoundsNeeded();
+  this.getTotalHourlyPoundsNeeded();
+};
+pikePlaceMarket.getAllTheTotals();
+capitolHill.getAllTheTotals();
+seattlePublicLibrary.getAllTheTotals();
+southLakeUnion.getAllTheTotals();
+seaTacAirport.getAllTheTotals();
