@@ -121,12 +121,12 @@ function manifestTitle(textContent) {
   var coffeeTableDiv = document.getElementById('tableExtrapolatons');
   var title = document.createElement('h1');
   title.textContent = textContent;
-  coffeeTable.appendChild(title);
+  coffeeTableDiv.appendChild(title);
   }
 //create table element
 function manifestTableFrame(tableId) {
   var coffeeTableDiv = document.getElementById('tableExtrapolatons');
-  var table = document.createELement('table');
+  var table = document.createElement('table');
   table.id = tableId;
   coffeeTableDiv.appendChild(table);
 }
@@ -203,8 +203,8 @@ function manifestBaristaTotals() {
   cell.textContent = franchiseDailyBaristas;
   row.appendChild(cell);
   for (var index in employeesPerHour) {
-    cell = document.createElement(''td);
-    cell.textContent = Math.round(employeesPerHour][index] * 10 ) / 10;
+    cell = document.createElement('td');
+    cell.textContent = Math.round(employeesPerHour[index] * 10 ) / 10;
     row.appendChild(cell);
   }
   table.appendChild(row);
