@@ -5,6 +5,7 @@ var allItems = [];
 var franchiseHourlyPounds = [];
 var franchiseTotalLbs = 0;
 
+
 //constructor function
 function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   this.name = name;
@@ -24,6 +25,7 @@ function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   this.totalToGoBeansSold = 0;
   this.totalBeansForCups = 0;
   this.totalPoundsNeeded = 0;
+  this.dailyBaristasNeeded = 0;
   allItems.push(this);
   stores.push(this.name);
 }
@@ -173,4 +175,17 @@ function manifestTotals() {
   }
   table.appendChild(row);
   franchiseHourlyPounds.shift();
+}
+//labor data
+function manifestBaristaRow(tableId, object) {
+  var table = document.getElementById()tableId;
+  var row = document.createElement('tr');
+  object.employeesPerHour.unshift(Math.ceil(object.dailyEmploy));
+  object.employeesPerHour.unshift(object.name);
+  for (var index in object.employeesPerHour[index]);
+  row.appendChild(cell);
+}
+table.appendChild(row);
+object.employeesPerHour.shift();
+object.employeesPerHour.shift();
 }
