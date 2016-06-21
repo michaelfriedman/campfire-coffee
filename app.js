@@ -142,3 +142,28 @@ function manifestHeader(tableId, textContent) {
   businessHours.shift();
   businessHours.shift();
 }
+//insert coffee shop data
+function manifestCoffeeProjections(tableId, object) {
+  var table = document.getElementById(tableId);
+  var row = document.createElement('tr');
+  object.totalHourlyPoundsNeeded.unshift(Math.round(object.totalPoundsNeeded * 10) / 10);
+  object.totalHourlyPoundsNeeded.unshift(object.name);
+  for (var index in object.totalHourlyPoundsNeeded) {
+    var cell = document.createElement('td');
+    cell.textContent = object.totalHourlyPoundsNeeded[index];
+    row.appendChild(cell);
+  }
+  table.appendChild(row);
+  object.totalHourlyPoundsNeeded.shift();
+  object.totalHourlyPoundsNeeded.shift();
+}
+//bottom row with totals
+function manifestTotals() {
+  var table = document.getElementById('coffeeTable')
+  var row = document.createElement('tr')
+  var cell = document.createElement('td');
+  cell.textContent = 'Totals';
+  row.appendChild(cell);
+}
+table.appendChild(row);
+allStoresHourlyPounds.shift();
