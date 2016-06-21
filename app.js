@@ -1,7 +1,8 @@
 //variables
 var businessHours = ['06:00 AM', '07:00 AM', '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM'];
-var stores = []
+var stores = [];
 var allItems = [];
+var franchiseHourlyPounds = [];
 var franchiseTotalLbs = 0;
 
 //constructor function
@@ -113,11 +114,11 @@ seaTacAirport.getAllTheTotals();
 
 //generate tables
   //make h1 title row
-  function manifestTitle(textContent) {
-    var coffeeTableDiv = document.getElementById('tableExtrapolatons');
-    var title = document.createElement('h1');
-    title.textContent = textContent;
-    coffeeTable.appendChild(title);
+function manifestTitle(textContent) {
+  var coffeeTableDiv = document.getElementById('tableExtrapolatons');
+  var title = document.createElement('h1');
+  title.textContent = textContent;
+  coffeeTable.appendChild(title);
   }
 //create table element
 function manifestTable(tableId) {
@@ -159,11 +160,17 @@ function manifestCoffeeProjections(tableId, object) {
 }
 //bottom row with totals
 function manifestTotals() {
-  var table = document.getElementById('coffeeTable')
+  var table = document.getElementById('coffeeTable');
   var row = document.createElement('tr')
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
+  franchiseHourlyPounds.unshift(Math.round( totalPoundsNeeded * 10 ) / 10);
+  for (var index in franchiseHourlyPounds) {
+    cell = document.createElement('td');
+    cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
+    row.appendChild(cell);
+  }
+  table.appendChild(row);
+  franchiseHourlyPounds.shift();
 }
-table.appendChild(row);
-allStoresHourlyPounds.shift();
