@@ -4,6 +4,7 @@ var stores = [];
 var allItems = [];
 var franchiseHourlyPounds = [];
 var franchiseTotalLbs = 0;
+var franchiseDailyBaristas = 0;
 
 
 //constructor function
@@ -189,3 +190,21 @@ table.appendChild(row);
 object.employeesPerHour.shift();
 object.employeesPerHour.shift();
 }
+//franchise barista totals
+function manifestBaristaTotals() {
+  var table = document.getElementById(baristaTable);
+  var row = document.createElement('tr');
+  var cell = document.createElement('td');
+  cell.textContent = 'Total Baristas';
+  row.appendChild(cell);
+  cell = document.createElement('td');
+  cell.textContent = franchiseDailyBaristas;
+  row.appendChild(cell);
+  for (var index in employeesPerHour) {
+    cell = document.createElement(''td);
+    cell.textContent = Math.round(employeesPerHour][index] * 10 ) / 10;
+    row.appendChild(cell);
+  }
+  table.appendChild(row);
+}
+//generate the tables
