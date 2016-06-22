@@ -91,12 +91,17 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
     this.totalHourlyPoundsNeeded[t] = (Math.round(this.beansForCups[t] + this.toGoBeansSold[t]) * 10) / 10;
   }
 };
-
-CoffeeShop.prototype.getFranchiseTotalLbs = function() {
-  for (index in object.totalPoundsNeeded) {
-    this.totalHourlyPoundsNeeded[index] = (parseFloat(this.beansForCups[index] + this.toGoBeansSold[index]));
+CoffeeShop.prototype.getDailyBaristasNeeded = function() {
+  for (var zz = 0; zz < this.employeesPerHour.length; zz++) {
+    this.dailyBaristasNeeded += this.employeesPerHour;
   }
 };
+
+// CoffeeShop.prototype.getFranchiseTotalLbs = function() {
+//   for (index in object.totalPoundsNeeded) {
+//     this.totalHourlyPoundsNeeded[index] = (parseFloat(this.beansForCups[index] + this.toGoBeansSold[index]));
+//   }
+// };
 
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
@@ -104,6 +109,7 @@ CoffeeShop.prototype.doAllTheMethods = function() {
   this.getToGoBeansSold();
   this.getBeansForCups();
   this.getEmployeesPerHour();
+  this.getDailyBaristasNeeded();
 };
 
 pikePlaceMarket.doAllTheMethods();
@@ -181,7 +187,7 @@ function manifestCoffeeTotals() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
+  this.franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
   for (var index in franchiseHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
@@ -295,7 +301,7 @@ function manifestKiosk(event) {
 
   if (names.indexOf(kioskName) !== -1) {
     newKioskUpdate(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust);
-    updateTables();
+    refreshTables();
   } else {
     var newFranchise = new CoffeeShop(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust, businessHours);
     newFranchise.doAllTheMethods();
