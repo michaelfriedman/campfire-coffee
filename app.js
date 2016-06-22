@@ -249,3 +249,30 @@ function manifestStaffingTable() {
 }
 manifestCoffeeTable();
 manifestStaffingTable();
+
+//reset tables on demand
+function clearForm() {
+  event.target.kioskName.value = '';
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.cupsPer.value = null;
+  event.target.poundsPer.value = null;
+}
+
+function resetTable() {
+  var coffeeTableDiv = document.getElementById('tableExtrapolatons');
+  coffeeTableDiv.innerHTML = '';
+}
+
+function newKioskUpdate(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
+  for (index in allItems) {
+    if (allItems[index].name === kioskName) {
+      allItems[index].minCustHr = minCustHr;
+      allItems[index].maxCustHr = maxCustHr;
+      allItems[index].cupsCust = cupsCust;
+      allItems[index].poundsCust = poundsCust;
+      allItems[index].resetTotals();
+      allItems[index].wipeCells();
+    }
+  }
+}

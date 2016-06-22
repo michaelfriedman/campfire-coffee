@@ -1,0 +1,80 @@
+body {
+  background: url('img/campfire-coffee.jpg')no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+h1 {
+  color: white;
+  font-family: 'helvetica Neue', Helvetica;
+  font-weight: 100;
+  font-size: 60px;
+  margin: 0px;
+}
+
+p {
+  color: white;
+  font-family: 'helvetica Neue', Helvetica;
+  font-weight: 200;
+
+}
+
+.box {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  width: 300px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+#navBar {
+width: 100%;
+background: black;
+min-height: 30px;
+padding: 10px;
+position: absolute;;
+text-align: center;
+}
+
+#navBar ul li {
+display: row;
+}
+
+ul li {
+list-style-type: none;
+}
+
+.navi {
+display: flex;
+justify-content: space-around;
+font-weight: 700;
+list-style-type: none;
+margin: 0 auto;
+padding: 0;
+}
+
+@media screen and (min-width: 480px) {
+	
+	#primary {
+		width: 50%;
+		float: left;
+	}
+
+	#secondary {
+		width: 40%;
+		float: right;
+	}
+
+		#gallery li {
+			width: 28.3333%
+	}
+
+		#gallery li:nth-child(4n) {
+		clear: left;
+	}
+
+@media screen and (min-width: 660px) {
+
+}
