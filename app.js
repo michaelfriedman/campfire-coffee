@@ -91,25 +91,12 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
     this.totalHourlyPoundsNeeded[t] = (Math.round(this.beansForCups[t] + this.toGoBeansSold[t]) * 10) / 10;
   }
 };
-CoffeeShop.prototype.getDailyBaristasNeeded = function() {
-  for (var zz = 0; zz < this.employeesPerHour.length; zz++) {
-    this.dailyBaristasNeeded += this.employeesPerHour;
-  }
-};
-
-// CoffeeShop.prototype.getFranchiseTotalLbs = function() {
-//   for (index in object.totalPoundsNeeded) {
-//     this.totalHourlyPoundsNeeded[index] = (parseFloat(this.beansForCups[index] + this.toGoBeansSold[index]));
-//   }
-// };
-
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
   this.getCupsSold();
   this.getToGoBeansSold();
   this.getBeansForCups();
   this.getEmployeesPerHour();
-  this.getDailyBaristasNeeded();
 };
 
 pikePlaceMarket.doAllTheMethods();
@@ -221,7 +208,7 @@ function manifestBaristaTotals() {
   cell.textContent = 'Total Baristas';
   row.appendChild(cell);
   cell = document.createElement('td');
-  cell.textContent = franchiseDailyBaristas;
+  cell.textContent = CoffeeShop.franchiseDailyBaristas;
   row.appendChild(cell);
   for (var index in employeesPerHour) {
     cell = document.createElement('td');
@@ -243,17 +230,17 @@ function manifestCoffeeTable() {
 }
 
 //generate staffing table
-function manifestStaffingTable() {
+function manifestBaristaTable() {
   manifestTitle('Daily Staffing Requirements by Kiosk');
-  manifestTableFrame('staffing-table');
-  manifestHeader('staffing-table', 'Totals');
+  manifestTableFrame('baristaTable');
+  manifestHeader('baristaTable', 'Totals');
   for (var index in allItems) {
-    manifestBaristaRow('staffing-table', allItems[index]);
+    manifestBaristaRow('baristaTable', allItems[index]);
   }
   manifestBaristaTotals();
 }
 manifestCoffeeTable();
-manifestStaffingTable();
+manifestBaristaTable();
 
 //reset tables on demand
 function clearForm() {
