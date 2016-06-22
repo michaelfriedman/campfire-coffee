@@ -94,7 +94,7 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
 
 CoffeeShop.prototype.getFranchiseTotalLbs = function() {
   for (index in object.totalPoundsNeeded) {
-    this.totalHourlyPoundsNeeded[t] = (parseFloat(this.beansForCups[t] + this.toGoBeansSold[t]));
+    this.totalHourlyPoundsNeeded[index] = (parseFloat(this.beansForCups[index] + this.toGoBeansSold[index]));
   }
 };
 
@@ -271,7 +271,37 @@ function newKioskUpdate(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
       allItems[index].cupsCust = cupsCust;
       allItems[index].poundsCust = poundsCust;
       allItems[index].resetTotals();
-      allItems[index].wipeCells();
+      allItems[index].clearForm();
+      allItems[index].doAllTheMethods();
     }
   }
 }
+
+function refreshTables() {
+  resetTable();
+  manifestCoffeeTable();
+  manifestStaffingTable();
+  clearForm();
+}
+
+//add franchise
+function manifestKiosk(event) {
+  event.preventDefault();
+  var kioskName = event.target.kioskName.value;
+  var minCustHr = parseInt(event.target.minCustHr.value);
+  var maxCustHr = parseInt(event.target.maxCustHr.value);
+  var cupsCust = parseInt(event.target.cupsCust.value);
+  var poundsCust = parseInt(event.target.poundsCust.value);
+
+  if (names.indexOf(kioskName) !== -1) {
+    newKioskUpdate(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust);
+    updateTables();
+  } else {
+    var newFranchise = new CoffeeShop(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust, businessHours);
+    newFranchise.doAllTheMethods();
+    uptateTables();
+  }
+}
+
+var newKiosk = document.getElementById('form');
+newKiosk.addEventListener('submit', manifestKiosk);

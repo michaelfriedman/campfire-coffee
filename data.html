@@ -9,24 +9,33 @@
 
   </head>
   <body>
+    <div id="homelink">
+      <a href="index.html">Home</a>
+    </div>
     <div id="myform">
    <h1><b>Campfire Coffee Kiosk Calculator</b></h1>
    <fieldset>
+     <form>
+
      <label for="kioskName">New Kiosk Name:</label><br>
-     <input type="text" id="name"><br>
+     <input type="text" id="name" name="kioskName"><br>
 
-     <label for="userInput">Min Customer Per Hour:</label><br>
-     <input type="number" min="5" max="50" id="minCustHr"><br>
+     <label for="minCustHr">Min Customer Per Hour:</label><br>
+     <input type="number" min="5" max="50" id="minCustHr" name="minCustHr"><br>
 
-     <label for="userInput">Max Customer Per Hour:</label><br>
-     <input type="number" min="10" max="500" id="minCustHr"><br>
+     <label for="maxCustHr">Max Customer Per Hour:</label><br>
+     <input type="number" min="10" max="500" id="minCustHr"name="maxCustHr"><br>
 
-     <label for="userInput">Cups Per Customer:</label><br>
-     <input type="number" min="1" max="5" id="minCustHr"><br>
+     <label for="cupsCust">Cups Per Customer:</label><br>
+     <input type="number" min="1" max="5" id="minCustHr"name="cupsCust"><br>
 
-     <label for="userInput">To go Pounds Per Customer:</label><br>
-     <input type="number" min=".01" max="5" step=".01" id="minCustHr"><br>
+     <label for="poundsCust">To go Pounds Per Customer:</label><br>
+     <input type="number" min=".01" max="5" step=".01" id="minCustHr"name="poundsCust"><br>
+
+     <input type="submit" id="createFranchise" value="Submit / Refresh">
+        </form>
 </div>
+
     <div id="tableExtrapolatons">
 
     </div>
