@@ -1,5 +1,5 @@
 body {
-  background: url('img/campfire-coffee.jpg')no-repeat center center fixed;
+  background: url('../img/campfire-coffee.jpg')no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -44,6 +44,11 @@ display: row;
 
 ul li {
 list-style-type: none;
+color: white;
+}
+
+ul li a:visited {
+  text-decoration: none;
 }
 
 .navi {
@@ -53,27 +58,12 @@ font-weight: 700;
 list-style-type: none;
 margin: 0 auto;
 padding: 0;
+color: white;
 }
 
 @media screen and (min-width: 480px) {
-	
-	#primary {
-		width: 50%;
-		float: left;
-	}
 
-	#secondary {
-		width: 40%;
-		float: right;
-	}
-
-		#gallery li {
-			width: 28.3333%
-	}
-
-		#gallery li:nth-child(4n) {
-		clear: left;
-	}
+}
 
 @media screen and (min-width: 660px) {
 
