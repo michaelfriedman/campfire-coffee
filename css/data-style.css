@@ -35,6 +35,7 @@
  tr {
    background: #f4f7f8;
    border-bottom: 1px solid #FFF;
+   border-collapse: collapse;
    margin-bottom: 5px;
  }
 
@@ -45,7 +46,7 @@
  th,
  td {
    text-align: left;
-   padding: 20px;
+   padding: 0px;
    font-weight: 300;
  }
 
