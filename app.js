@@ -100,6 +100,7 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
     this.totalHourlyPoundsNeeded[t] = (Math.round(this.beansForCups[t] + this.toGoBeansSold[t]) * 10) / 10;
   }
 };
+<<<<<<< HEAD
 
 CoffeeShop.prototype.getTotalBaristasPerStore = function() {
   for (var s = 0; s < this.employeesPerHour.length; s++) {
@@ -113,6 +114,8 @@ CoffeeShop.prototype.updateGrandTotals = function() {
   grandTotals.pounds = parseInt(this.totalPoundsNeeded);
 }
 
+=======
+>>>>>>> master
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
   this.getCupsSold();
@@ -197,7 +200,7 @@ function manifestCoffeeTotals() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
+  this.franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
   for (var index in franchiseHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
@@ -231,7 +234,7 @@ function manifestBaristaTotals() {
   cell.textContent = 'Total Baristas';
   row.appendChild(cell);
   cell = document.createElement('td');
-  cell.textContent = franchiseDailyBaristas;
+  cell.textContent = CoffeeShop.franchiseDailyBaristas;
   row.appendChild(cell);
   for (var index in employeesPerHour) {
     cell = document.createElement('td');
@@ -253,17 +256,17 @@ function manifestCoffeeTable() {
 }
 
 //generate staffing table
-function manifestStaffingTable() {
+function manifestBaristaTable() {
   manifestTitle('Daily Staffing Requirements by Kiosk');
-  manifestTableFrame('staffing-table');
-  manifestHeader('staffing-table', 'Totals');
+  manifestTableFrame('baristaTable');
+  manifestHeader('baristaTable', 'Totals');
   for (var index in allItems) {
-    manifestBaristaRow('staffing-table', allItems[index]);
+    manifestBaristaRow('baristaTable', allItems[index]);
   }
   manifestBaristaTotals();
 }
 manifestCoffeeTable();
-manifestStaffingTable();
+manifestBaristaTable();
 
 //reset tables on demand
 function clearForm() {
@@ -311,7 +314,7 @@ function manifestKiosk(event) {
 
   if (names.indexOf(kioskName) !== -1) {
     newKioskUpdate(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust);
-    updateTables();
+    refreshTables();
   } else {
     var newFranchise = new CoffeeShop(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust, businessHours);
     newFranchise.doAllTheMethods();
