@@ -68,4 +68,6 @@
 
 table, tr, td {
   border-collapse: collapse !important;
+  text-align: center;
+  padding: 1px 1px;
 }

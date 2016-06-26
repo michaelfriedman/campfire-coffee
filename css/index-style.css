@@ -59,3 +59,15 @@ color: white;
 ul li a {
   color: white !important
 }
+
+.gallery {
+  margin: 5% 25%;
+  display: flex;
+}
+
+.photo-layout {
+  flex-direction: row;
+  margin: 0 20px;
+  border: 2px solid black;
+  justify-content: center;
+}
