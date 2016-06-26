@@ -225,10 +225,12 @@ function manifestBaristaRow(tableId, object) {
 
 //franchise barista totals
 function manifestBaristaTotals() {
-  var table = document.getElementById(baristaTable);
   var row = document.createElement('tr');
-  var cell = document.createElement('td');
-  cell.textContent = 'Total Baristas';
+
+  var totalCell = document.CreateElement('th');
+  totalCell.textContent = 'Total';
+  row.appendChild(totalCell);
+
   row.appendChild(cell);
   cell = document.createElement('td');
   cell.textContent = franchiseDailyBaristas;
