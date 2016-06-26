@@ -64,4 +64,7 @@
  #homelink {
    float: left;
  }
-ß
+
+table, tr, td {
+  border-collapse: collapse !important;
+}
