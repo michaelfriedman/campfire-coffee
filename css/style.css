@@ -70,3 +70,7 @@ header {
 table, table td {
   border: 1px solid black;
 }
+
+table tr td {
+  border-collapse: collapse !important;
+}

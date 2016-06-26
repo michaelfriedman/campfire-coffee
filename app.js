@@ -100,7 +100,6 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
     this.totalHourlyPoundsNeeded[t] = (Math.round(this.beansForCups[t] + this.toGoBeansSold[t]) * 10) / 10;
   }
 };
-<<<<<<< HEAD
 
 CoffeeShop.prototype.getTotalBaristasPerStore = function() {
   for (var s = 0; s < this.employeesPerHour.length; s++) {
@@ -114,8 +113,6 @@ CoffeeShop.prototype.updateGrandTotals = function() {
   grandTotals.pounds = parseInt(this.totalPoundsNeeded);
 }
 
-=======
->>>>>>> master
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
   this.getCupsSold();
@@ -200,7 +197,7 @@ function manifestCoffeeTotals() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  this.franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
+  franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
   for (var index in franchiseHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
@@ -228,13 +225,15 @@ function manifestBaristaRow(tableId, object) {
 
 //franchise barista totals
 function manifestBaristaTotals() {
-  var table = document.getElementById(baristaTable);
   var row = document.createElement('tr');
-  var cell = document.createElement('td');
-  cell.textContent = 'Total Baristas';
+
+  var totalCell = document.CreateElement('th');
+  totalCell.textContent = 'Total';
+  row.appendChild(totalCell);
+
   row.appendChild(cell);
   cell = document.createElement('td');
-  cell.textContent = CoffeeShop.franchiseDailyBaristas;
+  cell.textContent = franchiseDailyBaristas;
   row.appendChild(cell);
   for (var index in employeesPerHour) {
     cell = document.createElement('td');
@@ -256,17 +255,17 @@ function manifestCoffeeTable() {
 }
 
 //generate staffing table
-function manifestBaristaTable() {
+function manifestStaffingTable() {
   manifestTitle('Daily Staffing Requirements by Kiosk');
-  manifestTableFrame('baristaTable');
-  manifestHeader('baristaTable', 'Totals');
+  manifestTableFrame('staffing-table');
+  manifestHeader('staffing-table', 'Totals');
   for (var index in allItems) {
-    manifestBaristaRow('baristaTable', allItems[index]);
+    manifestBaristaRow('staffing-table', allItems[index]);
   }
   manifestBaristaTotals();
 }
 manifestCoffeeTable();
-manifestBaristaTable();
+manifestStaffingTable();
 
 //reset tables on demand
 function clearForm() {
@@ -314,7 +313,7 @@ function manifestKiosk(event) {
 
   if (names.indexOf(kioskName) !== -1) {
     newKioskUpdate(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust);
-    refreshTables();
+    updateTables();
   } else {
     var newFranchise = new CoffeeShop(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust, businessHours);
     newFranchise.doAllTheMethods();

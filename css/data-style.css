@@ -65,13 +65,7 @@
    float: left;
  }
 
-<<<<<<< HEAD
+
 table, tr, td {
   border-collapse: collapse !important;
-=======
-table {
-border-collapse: collapse; !important
-border-collapse: separate; !important
-border-collapse: inherit; !important
->>>>>>> master
 }
