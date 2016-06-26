@@ -43,15 +43,17 @@ function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   stores.push(this.name);
 }
 
+var grandTotals = {
+  hourlyFranchisePounds: 0,
+  dailyFranchisePounds: 0,
+  hourlyFranchiseBaristas: 0,
+  dailyFranchiseBaristas: 0
+};
+
 //functions and methods
 function getRandomInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-// CoffeeShop.prototype.updateGrandTotals = function() {
-//   grandTotalCustomers += this.totalCustomers;
-// };
-//methods
 CoffeeShop.prototype.getRandomCustomer = function() {
   for (var j = 0; j < businessHours.length; j++) {
     this.hourlyCustomers.push(getRandomInclusive(this.minCustHr, this.maxCustHr));
@@ -106,12 +108,6 @@ CoffeeShop.prototype.getTotalBaristasPerStore = function() {
     this.dailyBaristasNeeded += parseInt((this.employeesPerHour));
   }
 };
-
-
-CoffeeShop.prototype.updateGrandTotals = function() {
-  grandTotals.baristas += this.employeesPerHour;
-  grandTotals.pounds = parseInt(this.totalPoundsNeeded);
-}
 
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
@@ -223,25 +219,25 @@ function manifestBaristaRow(tableId, object) {
   object.employeesPerHour.shift();
 }
 
-//franchise barista totals
-function manifestBaristaTotals() {
-  var row = document.createElement('tr');
-
-  var totalCell = document.CreateElement('th');
-  totalCell.textContent = 'Total';
-  row.appendChild(totalCell);
-
-  row.appendChild(cell);
-  cell = document.createElement('td');
-  cell.textContent = franchiseDailyBaristas;
-  row.appendChild(cell);
-  for (var index in employeesPerHour) {
-    cell = document.createElement('td');
-    cell.textContent = Math.round(employeesPerHour[index] * 10) / 10;
-    row.appendChild(cell);
-  }
-  table.appendChild(row);
-}
+// //franchise barista totals
+// function manifestBaristaTotals() {
+//   var row = document.createElement('tr');
+//
+//   var totalCell = document.createElement('th');
+//   totalCell.textContent = 'Total';
+//   row.appendChild(totalCell);
+//
+//   row.appendChild(cell);
+//   cell = document.createElement('td');
+//   cell.textContent = franchiseDailyBaristas;
+//   row.appendChild(cell);
+//   for (var index in employeesPerHour) {
+//     cell = document.createElement('td');
+//     cell.textContent = Math.round(employeesPerHour[index] * 10) / 10;
+//     row.appendChild(cell);
+//   }
+//   table.appendChild(row);
+// }
 
 //generate the coffee-table
 function manifestCoffeeTable() {
@@ -281,66 +277,23 @@ function resetTable() {
   coffeeTableDiv.innerHTML = '';
 }
 
-function newKioskUpdate(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
-  for (index in allItems) {
-    if (allItems[index].name === kioskName) {
-      allItems[index].minCustHr = minCustHr;
-      allItems[index].maxCustHr = maxCustHr;
-      allItems[index].cupsCust = cupsCust;
-      allItems[index].poundsCust = poundsCust;
-      allItems[index].resetTotals();
-      allItems[index].clearForm();
-      allItems[index].doAllTheMethods();
-    }
-  }
-}
-
-function refreshTables() {
-  resetTable();
-  manifestCoffeeTable();
-  manifestStaffingTable();
-  clearForm();
-}
-
-//add franchise
-function manifestKiosk(event) {
+function handleFormSubmit(event) {
   event.preventDefault();
-  var kioskName = event.target.kioskName.value;
-  var minCustHr = parseInt(event.target.minCustHr.value);
-  var maxCustHr = parseInt(event.target.maxCustHr.value);
-  var cupsCust = parseInt(event.target.cupsCust.value);
-  var poundsCust = parseInt(event.target.poundsCust.value);
+  console.log(event);
+  console.log(event.target);
 
-  if (names.indexOf(kioskName) !== -1) {
-    newKioskUpdate(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust);
-    updateTables();
-  } else {
-    var newFranchise = new CoffeeShop(kioskName, minCustHr, maxCustHr, cupsCust, poundsCust, businessHours);
-    newFranchise.doAllTheMethods();
-    uptateTables();
-  }
+  var name = event.target.name.value;
+  var price = parseFloat(event.target.price.value);
+
+  var newCoffeeShop = new CoffeeShop(name, price);
+  newItem.doAllTheMethods();
+
+  makeItemRow(newCoffeeSHop);
+  tfoot.innerHTML = '';
+  makeTotalRow();
+  event.target.name.value = '';
+  event.target.price,value = null;
 }
 
-// function handleFormSubmit(event) {
-//   event.preventDefault();
-//   console.log(event);
-//   console.log(event.target);
-//
-//   var name = event.target.name.value;
-//   var price = parseFloat(event.target.price.target.value);
-//
-//   var newCoffeeShop = new CoffeeShop
-// }
-//
-// tfoot.innerHTML = '';
-//
-//
-// event.target.name.value = ''
-// event.target.price.value = null;
-//
-//
-//
-//
-//
-// ar newKiosk = document.getElementById('form');
-// newKiosk.addEventListener('submit', manifestKiosk);
+form.addEventListener('submit', handleFormSubmit);
+button.addEventListener('click', handleButtonClick);
