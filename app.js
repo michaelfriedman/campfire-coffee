@@ -6,6 +6,19 @@ var franchiseHourlyPounds = [];
 var franchiseTotalLbs = 0;
 var franchiseDailyBaristas = 0;
 
+var pikePlaceMarket = new CoffeeShop('Pike Place Market', 14, 35, 1.2, 0.34);
+var capitolHill = new CoffeeShop('Capitol Hill', 12, 28, 3.2, 0.03);
+var seattlePublicLibrary = new CoffeeShop('Seattle Public Libray', 9, 45, 2.6, 0.02);
+var southLakeUnion = new CoffeeShop('South Lake Union', 5, 18, 1.3, 0.04);
+var seaTacAirport = new CoffeeShop('Sea-Tac Airport', 28, 44, 1.1, 0.41);
+
+var form = document.getElementById('form');
+var button = document.getElementById('createFranchiseButton');
+
+// var table = document.getElementById('table');
+// var tbody = document.getElementById('table-body');
+// var tfoot = document.getElementById('tfoot')[0];
+
 //constructor function
 function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   this.name = name;
@@ -30,18 +43,14 @@ function CoffeeShop(name, minCustHr, maxCustHr, cupsCust, poundsCust) {
   stores.push(this.name);
 }
 
-//objects
-var pikePlaceMarket = new CoffeeShop('Pike Place Market', 14, 35, 1.2, 0.34);
-var capitolHill = new CoffeeShop('Capitol Hill', 12, 28, 3.2, 0.03);
-var seattlePublicLibrary = new CoffeeShop('Seattle Public Libray', 9, 45, 2.6, 0.02);
-var southLakeUnion = new CoffeeShop('South Lake Union', 5, 18, 1.3, 0.04);
-var seaTacAirport = new CoffeeShop('Sea-Tac Airport', 28, 44, 1.1, 0.41);
-
 //functions and methods
 function getRandomInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// CoffeeShop.prototype.updateGrandTotals = function() {
+//   grandTotalCustomers += this.totalCustomers;
+// };
 //methods
 CoffeeShop.prototype.getRandomCustomer = function() {
   for (var j = 0; j < businessHours.length; j++) {
@@ -91,12 +100,29 @@ CoffeeShop.prototype.getTotalHourlyPoundsNeeded = function() {
     this.totalHourlyPoundsNeeded[t] = (Math.round(this.beansForCups[t] + this.toGoBeansSold[t]) * 10) / 10;
   }
 };
+<<<<<<< HEAD
+
+CoffeeShop.prototype.getTotalBaristasPerStore = function() {
+  for (var s = 0; s < this.employeesPerHour.length; s++) {
+    this.dailyBaristasNeeded += parseInt((this.employeesPerHour));
+  }
+};
+
+
+CoffeeShop.prototype.updateGrandTotals = function() {
+  grandTotals.baristas += this.employeesPerHour;
+  grandTotals.pounds = parseInt(this.totalPoundsNeeded);
+}
+
+=======
+>>>>>>> master
 CoffeeShop.prototype.doAllTheMethods = function() {
   this.getRandomCustomer();
   this.getCupsSold();
   this.getToGoBeansSold();
   this.getBeansForCups();
   this.getEmployeesPerHour();
+  this.getTotalBaristasPerStore();
 };
 
 pikePlaceMarket.doAllTheMethods();
@@ -296,5 +322,26 @@ function manifestKiosk(event) {
   }
 }
 
-var newKiosk = document.getElementById('form');
-newKiosk.addEventListener('submit', manifestKiosk);
+// function handleFormSubmit(event) {
+//   event.preventDefault();
+//   console.log(event);
+//   console.log(event.target);
+//
+//   var name = event.target.name.value;
+//   var price = parseFloat(event.target.price.target.value);
+//
+//   var newCoffeeShop = new CoffeeShop
+// }
+//
+// tfoot.innerHTML = '';
+//
+//
+// event.target.name.value = ''
+// event.target.price.value = null;
+//
+//
+//
+//
+//
+// ar newKiosk = document.getElementById('form');
+// newKiosk.addEventListener('submit', manifestKiosk);
