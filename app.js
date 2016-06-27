@@ -219,26 +219,6 @@ function manifestBaristaRow(tableId, object) {
   object.employeesPerHour.shift();
 }
 
-// //franchise barista totals
-// function manifestBaristaTotals() {
-//   var row = document.createElement('tr');
-//
-//   var totalCell = document.createElement('th');
-//   totalCell.textContent = 'Total';
-//   row.appendChild(totalCell);
-//
-//   row.appendChild(cell);
-//   cell = document.createElement('td');
-//   cell.textContent = franchiseDailyBaristas;
-//   row.appendChild(cell);
-//   for (var index in employeesPerHour) {
-//     cell = document.createElement('td');
-//     cell.textContent = Math.round(employeesPerHour[index] * 10) / 10;
-//     row.appendChild(cell);
-//   }
-//   table.appendChild(row);
-// }
-
 //generate the coffee-table
 function manifestCoffeeTable() {
   manifestTitle('Minimum Stock Requirements by Kiosk');
@@ -258,25 +238,43 @@ function manifestStaffingTable() {
   for (var index in allItems) {
     manifestBaristaRow('staffing-table', allItems[index]);
   }
-  manifestBaristaTotals();
+  createEmployTotalsRow();
 }
 manifestCoffeeTable();
 manifestStaffingTable();
 
+function createEmployTotalsRow() {
+  var table = document.getElementById('staffing-table');
+  var row = document.createElement('tr');
+  var cell = document.createElement('td');
+  cell.textContent = 'Totals';
+  row.appendChild(cell);
+  cell = document.createElement('td');
+  cell.textContent = franchiseDailyBaristas;
+  row.appendChild(cell);
+  // for (var index in allStoresHourlyEmploy) {
+  //   cell = document.createElement('td');
+  //   cell.textContent = Math.round(allStoresHourlyEmploy[index] * 10) / 10;
+  //   row.appendChild(cell);
+  }
+  table.appendChild(row);
+
+
 //reset tables on demand
-function clearForm() {
-  event.target.kioskName.value = '';
-  event.target.minCust.value = null;
-  event.target.maxCust.value = null;
-  event.target.cupsPer.value = null;
-  event.target.poundsPer.value = null;
-}
+// function clearForm() {
+//   event.target.kioskName.value = '';
+//   event.target.minCust.value = null;
+//   event.target.maxCust.value = null;
+//   event.target.cupsPer.value = null;
+//   event.target.poundsPer.value = null;
+// }
+//
+// function resetTable() {
+//   var coffeeTableDiv = document.getElementById('tableExtrapolatons');
+//   coffeeTableDiv.innerHTML = '';
+// }
 
-function resetTable() {
-  var coffeeTableDiv = document.getElementById('tableExtrapolatons');
-  coffeeTableDiv.innerHTML = '';
-}
-
+//Everything below this line is written exactly from starter code.
 function handleFormSubmit(event) {
   event.preventDefault();
   console.log(event);
