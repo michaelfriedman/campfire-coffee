@@ -59,7 +59,7 @@ ul li a {
 .gallery {
   margin: auto;
   display: flex;
-  flex-grow:
+  flex-wrap: wrap;
 }
 
 .photo-layout {
