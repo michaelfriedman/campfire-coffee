@@ -176,10 +176,17 @@ function manifestCoffeeProjections(tableId, object) {
   var row = document.createElement('tr');
   object.totalHourlyPoundsNeeded.unshift(Math.round(object.totalPoundsNeeded * 10) / 10);
   object.totalHourlyPoundsNeeded.unshift(object.name);
-  for (var index in object.totalHourlyPoundsNeeded) {
+  
+  for (var index = 0; index < object.totalHourlyPoundsNeeded.length; index++) {
     var cell = document.createElement('td');
     cell.textContent = object.totalHourlyPoundsNeeded[index];
     row.appendChild(cell);
+    if (franchiseHourlyPounds.length <= index - 1) {
+      franchiseHourlyPounds.push(0)
+    }
+    if (parseInt(index) > 0) {
+      franchiseHourlyPounds[index - 1] += parseFloat(object.totalHourlyPoundsNeeded[index]);
+    }
   }
   table.appendChild(row);
   object.totalHourlyPoundsNeeded.shift();
@@ -193,7 +200,8 @@ function manifestCoffeeTotals() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
+  debugger;
+  //franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
   for (var index in franchiseHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
