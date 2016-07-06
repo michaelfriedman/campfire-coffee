@@ -3,6 +3,7 @@ var businessHours = ['06:00 AM', '07:00 AM', '08:00 AM', '09:00 AM', '10:00 AM',
 var stores = [];
 var allItems = [];
 var franchiseHourlyPounds = [];
+var franchiseHourlyEmployeesArrayGlobal= [];
 var franchiseTotalLbs = 0;
 var franchiseDailyBaristas = 0;
 
@@ -176,13 +177,13 @@ function manifestCoffeeProjections(tableId, object) {
   var row = document.createElement('tr');
   object.totalHourlyPoundsNeeded.unshift(Math.round(object.totalPoundsNeeded * 10) / 10);
   object.totalHourlyPoundsNeeded.unshift(object.name);
-  
+
   for (var index = 0; index < object.totalHourlyPoundsNeeded.length; index++) {
     var cell = document.createElement('td');
     cell.textContent = object.totalHourlyPoundsNeeded[index];
     row.appendChild(cell);
     if (franchiseHourlyPounds.length <= index - 1) {
-      franchiseHourlyPounds.push(0)
+      franchiseHourlyPounds.push(0);
     }
     if (parseInt(index) > 0) {
       franchiseHourlyPounds[index - 1] += parseFloat(object.totalHourlyPoundsNeeded[index]);
@@ -200,8 +201,6 @@ function manifestCoffeeTotals() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  debugger;
-  //franchiseHourlyPounds.unshift(Math.round(CoffeeShop.totalPoundsNeeded * 10) / 10);
   for (var index in franchiseHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(franchiseHourlyPounds[index] * 10) / 10;
@@ -223,9 +222,16 @@ function manifestBaristaRow(tableId, object) {
     row.appendChild(cell);
   }
   table.appendChild(row);
-  object.employeesPerHour.shift();
-  object.employeesPerHour.shift();
-}
+  if (franchiseHourlyEmployeesArrayGlobal.length <= index - 1) {
+        franchiseHourlyEmployeesArrayGlobal.push(0);
+      if (parseInt(index) > 0) {
+        franchiseHourlyEmployeesArrayGlobal[index - 1] += parseFloat(object.employeesPerHour[index]);
+      }
+    }
+    table.appendChild(row);
+    object.employeesPerHour.shift();
+    object.employeesPerHour.shift();
+  }
 
 //generate the coffee-table
 function manifestCoffeeTable() {
@@ -260,12 +266,11 @@ function createEmployTotalsRow() {
   cell = document.createElement('td');
   cell.textContent = franchiseDailyBaristas;
   row.appendChild(cell);
-  // for (var index in allStoresHourlyEmploy) {
-  //   cell = document.createElement('td');
-  //   cell.textContent = Math.round(allStoresHourlyEmploy[index] * 10) / 10;
-  //   row.appendChild(cell);
-  }
   table.appendChild(row);
+  franchiseHourlyEmployeesArrayGlobal.shift();
+}
+
+
 
 
 //reset tables on demand
